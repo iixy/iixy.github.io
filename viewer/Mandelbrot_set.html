@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mandelbrot</title>
+<script>
+window.onload = function() {
+    var ESCAPERADIUS = 128.0;
+    var MAXITERNUMBER = 1000;
+
+    //  + i @ 0.016110 /0.75
+    var OX = -0.784421;
+    var OY = 0.141232;
+    var WIDTH = 0.016110;
+    var RATIO = 0.75;
+
+    var IMAGEWIDTH = 1000;
+    
+    var IMAGEHEIGHT = IMAGEWIDTH * RATIO;
+    var PIXELSIZE = WIDTH / IMAGEWIDTH;
+    var COFFSET = IMAGEWIDTH % 2 == 0 ? (IMAGEWIDTH / 2) - 0.5 : (IMAGEWIDTH / 2);
+    var ROFFSET = IMAGEHEIGHT % 2 == 0 ? (IMAGEHEIGHT / 2) - 0.5 : (IMAGEHEIGHT / 2);
+    
+    var canvas = document.getElementById("image"); 
+    var context = canvas.getContext("2d");
+    canvas.width = IMAGEWIDTH;
+    canvas.height = IMAGEHEIGHT;
+    var imagedata = context.createImageData(IMAGEWIDTH, IMAGEHEIGHT);
+    
+    for (row = 0; row < IMAGEHEIGHT; row++) {
+        for (col = 0; col < IMAGEWIDTH; col++) {
+            var color = calcColor(col, row);
+            drawColor(col, row, color);
+        }
+    }
+    
+    saveImage();
+
+    function calcColor(col, row) {
+        var cx = (col - COFFSET) * PIXELSIZE + OX;
+        var cy = (row - ROFFSET) * PIXELSIZE + OY;
+        var r = 0;
+        var g = 0;
+        var b = 0;
+        for (i = -1; i <= 1; i++) {
+            for (j = -1; j <= 1; j++) {
+                var d = iter(cx + i * PIXELSIZE / 3, cy + j * PIXELSIZE / 3);
+                var c = getColor(d);
+                r += (c >> 16) & 0xFF;
+                g += (c >> 8) & 0xFF;
+                b += c & 0xFF;
+            }
+        }
+
+        r /= 9;
+        g /= 9;
+        b /= 9;
+        return (r << 16) | (g << 8) | b;
+    }
+
+    function iter(cx, cy) {
+        var x = 0;
+        var y = 0;
+        var newx;
+        var newy;
+
+        var smodz = 0;
+        var i = 0;
+        while (i < MAXITERNUMBER) {
+            newx = x * x - y * y + cx;
+            newy = 2 * x * y + cy;
+            x = newx;
+            y = newy;
+            i++;
+
+            smodz = x * x + y * y;
+            if (smodz >= ESCAPERADIUS) {
+                var d = i + 1 - Math.log(Math.log(smodz) * 0.5) / Math.log(2);
+                return d;
+            }
+        }
+
+        return -1.0;
+    }
+
+    function getColor(d) {
+        if (d >= 0) {
+            var k = 0.021 * (d - 1 + Math.log(Math.log(128)) / Math.log(2));
+            k = Math.log(1 + k) - 29.0 / 400;
+
+            k = k - Math.floor(k);
+            k *= 400;
+            if (k < 63.0) {
+                return interpolation(k / 63.0, 0x232323, 0x727272);
+            } else if (k < 167.0) {
+                return interpolation((k - 63.0) / (167.0 - 63.0), 0x727272, 0xF9F9F9);
+            } else if (k < 256.0) {
+                return interpolation((k - 167.0) / (256.0 - 167.0), 0xF9F9F9, 0x8E8E8E);
+            } else if (k < 342.0) {
+                return interpolation((k - 256.0) / (342.0 - 256.0), 0x8E8E8E, 0x212121);
+            } else {
+                return interpolation((k - 342.0) / (400.0 - 342.0), 0x212121, 0x242424);
+            }
+        } else {
+            return 0x000000;
+        }
+    }
+    
+    function interpolation(f, c0, c1) {
+        var r0 = (c0 >> 16) & 0xFF;
+        var g0 = (c0 >> 8) & 0xFF;
+        var b0 = c0 & 0xFF;
+        var r1 = (c1 >> 16) & 0xFF;
+        var g1 = (c1 >> 8) & 0xFF;
+        var b1 = c1 & 0xFF;
+        var r = Math.floor((1 - f) * r0 + f * r1 + 0.5);
+        var g = Math.floor ((1 - f) * g0 + f * g1 + 0.5);
+        var b = Math.floor ((1 - f) * b0 + f * b1 + 0.5);
+        return (r << 16) | (g << 8) | b;
+    }
+    
+    function drawColor(col, row, rgb) {
+        var pindex = ((IMAGEHEIGHT - row - 1) * IMAGEWIDTH + col) * 4;
+        imagedata.data[pindex] = (rgb>>16) & 0xFF;
+        imagedata.data[pindex+1] = (rgb>>8) & 0xFF;
+        imagedata.data[pindex+2] = rgb & 0xFF;
+        imagedata.data[pindex+3] = 255;
+    }
+    
+    function saveImage() {
+        context.putImageData(imagedata, 0, 0);
+        context.font = "20px sans-serif"
+        context.fillStyle = "white"
+        context.fillText("c = -0.18+0.15i",950,950)
+    }
+};
+
+</script>
+</head>
+<body>
+<canvas id="image" width="0" height="0"></canvas>
+</body>
+</html>
