@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>数据分析 on </title>
-        <link>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
-        <description>Recent content in 数据分析 on </description>
+        <title>数据分析 on Yuriany&#39;s Blog</title>
+        <link>https://iixy.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+        <description>Recent content in 数据分析 on Yuriany&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 22 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>yuriany</copyright>
+        <lastBuildDate>Sun, 22 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iixy.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>利用Python进行简单的数据分析（1）</title>
-        <link>/post/231022_anaylsis_data/</link>
+        <link>https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/</link>
         <pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate>
         
-        <guid>/post/231022_anaylsis_data/</guid>
+        <guid>https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/</guid>
         <description>&lt;p&gt;对三国演义进行简单的数据分析&lt;/p&gt;
 &lt;h3 id=&#34;引入必要的库&#34;&gt;引入必要的库&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;import math
@@ -90,7 +91,7 @@ sns.cubehelix_paltte(n, start, rot, reverse, gamma) &lt;br&gt;
 &lt;em&gt;@param start,rot: 颜色区间&lt;/em&gt; &lt;br&gt;
 &lt;em&gt;@param reverse: 反转生成的颜色序列&lt;/em&gt; &lt;br&gt;
 &lt;em&gt;@param gamma: 设置颜色的伽马值，越大颜色越深，默认为1&lt;/em&gt;
-&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/font&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# 绘制条形统计图并美化
 fig = sns.barplot(x=x, y=y, palette=sns.cubehelix_palette(
     len(x),start=.75,rot=-.150,reverse=True,gamma=1.5))
@@ -100,10 +101,10 @@ fig = sns.barplot(x=x, y=y, palette=sns.cubehelix_palette(
 fig.get_figure().savefig(&amp;quot;o.png&amp;quot;, bbox_inches=&amp;quot;tight&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;输出
-&lt;img src=&#34;/post/231022_anaylsis_data/o.png&#34;
+&lt;img src=&#34;https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o.png&#34;
 	width=&#34;4855&#34;
 	height=&#34;1993&#34;
-	srcset=&#34;/post/231022_anaylsis_data/o_hue671a2dbf39a7bc8fa5172dcad465c7e_106770_480x0_resize_box_3.png 480w, /post/231022_anaylsis_data/o_hue671a2dbf39a7bc8fa5172dcad465c7e_106770_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o_hue671a2dbf39a7bc8fa5172dcad465c7e_106770_480x0_resize_box_3.png 480w, https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o_hue671a2dbf39a7bc8fa5172dcad465c7e_106770_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;s输出&#34;
@@ -115,13 +116,15 @@ fig.get_figure().savefig(&amp;quot;o.png&amp;quot;, bbox_inches=&amp;quot;tight&
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;将数据导出为词云&#34;&gt;将数据导出为词云&lt;/h3&gt;
-&lt;p&gt;首先记录词频为dict格式，log(e,n+1)降低词频差
-import math
+&lt;p&gt;首先记录词频为dict格式，log(e,n+1)降低词频差&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import math
 gen = dict();
 for i in all_counts.most_common(500):
-if len(i[0]) &amp;gt; 1:
-gen[i[0]] = int(math.log(i[1]+1))&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 打开遮罩图片
+    if len(i[0]) &amp;gt; 1:
+        gen[i[0]] = int(math.log(i[1]+1))
+
+
+# 打开遮罩图片
 img = Image.open(&amp;quot;cup_icon.png&amp;quot;)
 mask = np.array(img)
 
@@ -143,10 +146,10 @@ plt.show()
 wc.to_file(&amp;quot;o2.png&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;输出
-&lt;img src=&#34;/post/231022_anaylsis_data/o2.png&#34;
+&lt;img src=&#34;https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o2.png&#34;
 	width=&#34;2000&#34;
 	height=&#34;2000&#34;
-	srcset=&#34;/post/231022_anaylsis_data/o2_hu540f56b010c31d2d3af117104bed47aa_619756_480x0_resize_box_3.png 480w, /post/231022_anaylsis_data/o2_hu540f56b010c31d2d3af117104bed47aa_619756_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o2_hu540f56b010c31d2d3af117104bed47aa_619756_480x0_resize_box_3.png 480w, https://iixy.github.io/p/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/o2_hu540f56b010c31d2d3af117104bed47aa_619756_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;s输出&#34;

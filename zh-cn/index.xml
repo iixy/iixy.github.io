@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Yuriany&#39;s Blog</title>
+        <link>https://iixy.github.io/zh-cn/</link>
+        <description>Recent content on Yuriany&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>yuriany</copyright><atom:link href="https://iixy.github.io/zh-cn/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>
